@@ -30,11 +30,10 @@ const ModeSwitcher = styled.div`
     color: var(--color-text);
     font-size: var(--fs-sm);
     cursor: pointer;
-    //font-weight: var(--fw-bold);
 `;
 
 const Header = () => {
-  const [theme, setTheme] = React.useState('light');
+  const [theme, setTheme] = React.useState(localStorage.getItem('theme') || 'light');
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
@@ -42,6 +41,7 @@ const Header = () => {
 
   React.useEffect(() => {
     document.body.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme)
   }, [theme]);
 
   return (
